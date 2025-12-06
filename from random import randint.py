@@ -17,7 +17,8 @@ while al != r:
     print("El número correcto es menor que tu intento.")
     
 print("¡Es correcto, felicidades!")
-print ( " Presiona Enter para salir")
+
+
 
 
 

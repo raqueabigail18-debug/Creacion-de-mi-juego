@@ -29,4 +29,6 @@ Aplicamos:
      \n: Hacen salto de línea
      \f: Formatea el texto para escribir de manera separada unas palabras.
   9. if/else → decisiones
+  10. def: se usa para definir una función.
+  11. main(): controla el flujo general del programa.
      

@@ -1,4 +1,5 @@
-from random import randint
+from random import randint 
+
 def mostrar_bienvenida():
    print("\n!BIENVENIDOS AL JUEGO DE ADIVINAR NUMEROS!")
 
@@ -11,11 +12,11 @@ def pedir_nombre():
    nombre = input("Cual es tu nombre?").strip ()
 
     # .strip() elimina espacios al inicio y al final
-
-   return nombre
+   
    if nombre== "":
-      nombre="Jugador"
-      return nombre 
+       nombre = "Jugador"
+   return nombre 
+
 def elegir_dificultad():
    
    """ Muestra el menú de dificultad, valida la opción (SELECTION)
@@ -45,7 +46,7 @@ def pedir_numero(rango):
     """
 
     while True:
-      entrada= input(f"Adivina un numero entre 1 y {rango}: ").strip()
+      entrada= input(f"Adivina un numero entre 1 y {rango}: ").strip ()
       if not entrada.isdigit():
          # Verifica si es un número entero positivo
          print("Debes escribir un numero (sin letras).")
@@ -84,10 +85,9 @@ def jugar_partida(nombre, config):
 
       intentos -= 1  # se descuenta un intento
       print(f"Intentos restantes: {intentos}\n")
-
-    # Si salió del bucle, se quedó sin intentos
-      print(f"Perdiste. El número era: {numero_secreto}\n") 
-      return False
+     # Esto se ejecuta SOLO si el while terminó (sin intentos)
+   print(f"Perdiste. El número era: {numero_secreto}\n") 
+   return False
 
 
 def preguntar_reinicio():
@@ -96,12 +96,9 @@ def preguntar_reinicio():
         op = input("¿Deseas jugar otra vez? (S/N): ").strip().upper()
         # .upper() convierte a mayúscula para aceptar s/S y n/N
 
-        if op == "S":
-            return True
-        elif op == "N":
-            return False
-        else:
-            print("Responde con S o N.")
+        if op in ("S", "N"):
+            return op == "S"
+        print("Responde con S o N.")
 
 
 def main():
@@ -111,19 +108,13 @@ def main():
     mostrar_bienvenida() 
 
     nombre = pedir_nombre()  
-    seguir = True
+    config= elegir_dificultad()
 
-    while seguir: 
-        config = elegir_dificultad()  
+    while True:
 
         jugar_partida(nombre, config)  
-
-        seguir = preguntar_reinicio()
-
-    print("\nGracias por jugar. ¡Hasta pronto!\n")  
-
-
-# Esto hace que el programa comience aquí cuando ejecutas el archivo:
+        if not preguntar_reinicio():
+            print("\nGracias por jugar. ¡Hasta pronto!\n")
+            break  # sale del bucle si no quiere reiniciar
 if __name__ == "__main__":
-    main()
-
+    main()     
